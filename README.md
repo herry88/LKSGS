@@ -82,6 +82,14 @@ Proyek ini erwart columns dalam urutan:
 4. BidangLomba
 5. Wilayah
 
+## Perubahan Terbaru (Changelog)
+
+- **Premium UI & UX:** Desain antarmuka modern yang lebih elegan dengan kombinasi warna (Putih, Oranye, Hitam), tipografi menarik (Google Fonts: Outfit & Inter), dan micro-animation interaktif.
+- **Welcome Modal Eksklusif:** Popup selamat datang informatif berisi jadwal pelaksanaan lomba, cakupan kompetensi, link kisi-kisi teknis, serta tautan menuju Grup WA Koordinasi.
+- **Dashboard Statistik Real-time:** Menampilkan ringkasan (summary) data di bagian atas tabel, meliputi total peserta, jumlah asal sekolah, dan sebaran wilayah peserta.
+- **Pencarian Instan (Live Search):** Fitur filter data cerdas dan interaktif yang memudahkan pencarian siswa berdasarkan nama, sekolah, atau wilayah.
+- **Custom Footer:** Tambahan credit footer `@2026 Shop Master Create with love` dengan ikon ♥ beranimasi.
+
 ## Teknologi
 
 - **Backend:** Google Apps Script
