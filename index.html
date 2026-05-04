@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base target="_top">
   <!-- Google Fonts: Outfit for premium geometric look, Inter for readable text -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg-body: #F9FAFB;
@@ -19,7 +22,9 @@
       --border: #E5E7EB;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -51,7 +56,7 @@
       margin-bottom: 2.5rem;
       position: relative;
     }
-    
+
     .header-content h1 {
       font-family: 'Outfit', sans-serif;
       font-size: 3.5rem;
@@ -140,7 +145,88 @@
       letter-spacing: 0.05em;
       padding: 1.25rem 1.5rem;
       border-bottom: 2px solid var(--border);
-      background: #F9FAFB;
+      background: #FAFBFC;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.05);
+      border-color: var(--orange);
+    }
+
+    .stat-icon {
+      width: 52px; height: 52px;
+      background: #FFF7ED;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange);
+    }
+
+    .stat-info p {
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    .stat-info h3 {
+      margin: 0.25rem 0 0 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.875rem 1rem 0.875rem 3rem;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.05);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
     }
 
     td {
@@ -156,7 +242,8 @@
     }
 
     tr:hover td {
-      background-color: #FFF7ED; /* Soft orange background on hover */
+      background-color: #FFF7ED;
+      /* Soft orange background on hover */
     }
 
     tr:last-child td {
@@ -212,7 +299,10 @@
     /* Modal Styling */
     .modal-overlay {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: rgba(17, 24, 39, 0.4);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
@@ -265,9 +355,12 @@
       background: #F3F4F6;
       border: none;
       color: var(--text-muted);
-      width: 32px; height: 32px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -388,20 +481,274 @@
       animation: pulse 2s infinite ease-in-out;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
-    
+
     .row-enter {
       opacity: 0;
       transform: translateY(10px);
       animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Welcome Modal */
+    .welcome-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(9, 9, 11, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      padding: 1.5rem;
+    }
+
+    .welcome-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .welcome-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 560px;
+      overflow: hidden;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    .welcome-overlay.active .welcome-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--orange) 0%, #F59E0B 50%, var(--orange-dark) 100%);
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .welcome-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -60%;
+      left: -20%;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .banner-vector {
+      position: absolute;
+      bottom: 0;
+      opacity: 0.4;
+      /* Significantly higher opacity */
+      pointer-events: none;
+      z-index: 1;
+      /* Above circles, below text */
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    }
+
+    .banner-vector-monas {
+      right: 10px;
+      height: 180px;
+      /* Larger */
+      width: 70px;
+    }
+
+    .banner-vector-ondel {
+      left: 10px;
+      height: 160px;
+      /* Larger */
+      width: 90px;
+    }
+
+    .welcome-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 2;
+      /* Increased z-index */
+      backdrop-filter: blur(4px);
+    }
+
+    .welcome-banner h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+      position: relative;
+      z-index: 2;
+      /* Increased z-index */
+    }
+
+    .welcome-banner p {
+      font-family: 'Inter', sans-serif;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+      /* Increased z-index */
+    }
+
+    .welcome-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .welcome-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .welcome-info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .welcome-info-list li .info-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: #FFF7ED;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+    }
+
+    .welcome-info-list li strong {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--black);
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .welcome-info-list li span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .welcome-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-welcome {
+      width: 100%;
+      background: var(--black);
+      border: 2px solid var(--black);
+      color: #FFFFFF;
+      padding: 1rem 2rem;
+      border-radius: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-welcome:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3);
+    }
+
+    .welcome-footer-note {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.03em;
+    }
+
+    .main-footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
     /* Responsive */
@@ -411,124 +758,375 @@
         align-items: flex-start;
         gap: 1.5rem;
       }
-      .header-content h1 { font-size: 2.5rem; }
+
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .welcome-banner {
+        padding: 2rem 1.5rem 1.5rem;
+      }
+
+      .welcome-banner h2 {
+        font-size: 1.35rem;
+      }
+
+      .welcome-body {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="header-wrapper">
+  <div class="container">
+    <div class="header-wrapper">
     <div class="header-content">
       <p>Rekapitulasi Tahun 2026</p>
       <h1>Pemenang <span>LKS</span></h1>
     </div>
     <button class="btn-action" onclick="openModal()">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+      </svg>
       Tambah Data
     </button>
   </div>
 
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path></svg>
+      </div>
+      <div class="stat-info">
+        <p>Total Peserta</p>
+        <h3 id="stat-total">0</h3>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <div class="stat-info">
+        <p>Asal Sekolah</p>
+        <h3 id="stat-schools">0</h3>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <div class="stat-info">
+        <p>Wilayah</p>
+        <h3 id="stat-regions">0</h3>
+      </div>
+    </div>
+  </div>
+
   <div class="content-card">
     <div class="table-container">
+      <div style="padding: 1.5rem 1.5rem 0 1.5rem;">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Cari berdasarkan nama siswa, sekolah, atau wilayah..." onkeyup="filterTable()">
+        </div>
+      </div>
+
       <div id="loader" class="loader-wrapper">
         <div class="spinner"></div>
         <div class="loader-text">Sinkronisasi Data...</div>
       </div>
 
-      <table id="dataTable" style="display: none;">
-        <thead>
-          <tr>
-            <th>NIS</th>
-            <th>Nama Siswa</th>
-            <th>Asal Sekolah</th>
-            <th>Bidang Lomba</th>
-            <th>Wilayah</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <!-- Data Rows -->
-        </tbody>
-      </table>
+        <table id="dataTable" style="display: none;">
+          <thead>
+            <tr>
+              <th>NIS</th>
+              <th>Nama Siswa</th>
+              <th>Asal Sekolah</th>
+              <th>Bidang Lomba</th>
+              <th>Wilayah</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Data Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="main-footer">
+      @2026 Shop Master Create with love <span style="color: #ef4444; display: inline-block; animation: pulse 2s infinite;">&hearts;</span>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Entri Data Baru</h2>
+        <button class="close-btn" onclick="closeModal()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <form id="addForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label>Nomor Induk Siswa</label>
+          <input type="text" id="nis" class="form-control" placeholder="Contoh: 24251001" required>
+        </div>
+        <div class="form-group">
+          <label>Nama Lengkap Siswa</label>
+          <input type="text" id="namaSiswa" class="form-control" placeholder="Masukkan nama" required>
+        </div>
+        <div class="form-group">
+          <label>Asal Sekolah</label>
+          <input type="text" id="namaSekolah" class="form-control" placeholder="SMKN 2 Jakarta" required>
+        </div>
+        <div class="form-group">
+          <label>Bidang Lomba</label>
+          <input type="text" id="bidangLomba" class="form-control" value="IT Software Solution for Business" readonly disabled required>
+        </div>
+        <div class="form-group">
+          <label>Wilayah</label>
+          <select id="wilayah" class="form-control" required>
+            <option value="" disabled selected>Pilih Wilayah</option>
+            <option value="Jakarta Pusat 1">Jakarta Pusat 1</option>
+            <option value="Jakarta Pusat 2">Jakarta Pusat 2</option>
+            <option value="Jakarta Timur 1">Jakarta Timur 1</option>
+            <option value="Jakarta Timur 2">Jakarta Timur 2</option>
+            <option value="Jakarta Barat 1">Jakarta Barat 1</option>
+            <option value="Jakarta Barat 2">Jakarta Barat 2</option>
+            <option value="Jakarta Selatan 1">Jakarta Selatan 1</option>
+            <option value="Jakarta Selatan 2">Jakarta Selatan 2</option>
+            <option value="Jakarta Utara 1">Jakarta Utara 1</option>
+            <option value="Jakarta Utara 2">Jakarta Utara 2</option>
+            <option value="Kepulauan Seribu">Kepulauan Seribu</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Batal</button>
+          <button type="submit" id="submitBtn" class="btn-primary">Simpan Data</button>
+        </div>
+      </form>
     </div>
   </div>
-</div>
 
-<!-- Modal -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <h2>Entri Data Baru</h2>
-      <button class="close-btn" onclick="closeModal()">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
+  <!-- Welcome Modal -->
+  <div class="welcome-overlay" id="welcomeModal">
+    <div class="welcome-card">
+      <div class="welcome-banner">
+        <!-- Ondel-ondel vector (left) -->
+        <svg class="banner-vector banner-vector-ondel" viewBox="0 0 120 200" fill="white"
+          xmlns="http://www.w3.org/2000/svg">
+          <!-- Head -->
+          <ellipse cx="60" cy="40" rx="35" ry="38" />
+          <!-- Crown/headdress -->
+          <path d="M25 25 Q35 5 60 2 Q85 5 95 25 Q90 15 60 10 Q30 15 25 25Z" />
+          <rect x="50" y="0" width="20" height="8" rx="4" />
+          <!-- Eyes -->
+          <circle cx="45" cy="38" r="6" />
+          <circle cx="75" cy="38" r="6" />
+          <!-- Mouth -->
+          <ellipse cx="60" cy="55" rx="10" ry="5" />
+          <!-- Body / skirt -->
+          <path d="M30 75 Q28 78 25 130 Q30 145 60 148 Q90 145 95 130 Q92 78 90 75 Q75 70 60 70 Q45 70 30 75Z" />
+          <!-- Decorative necklace -->
+          <ellipse cx="60" cy="72" rx="22" ry="5" fill="white" opacity="0.5" />
+          <!-- Arms -->
+          <path d="M28 85 Q15 100 20 125" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" />
+          <path d="M92 85 Q105 100 100 125" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" />
+          <!-- Feet -->
+          <rect x="38" y="148" width="16" height="10" rx="5" />
+          <rect x="66" y="148" width="16" height="10" rx="5" />
+          <!-- Skirt stripes -->
+          <line x1="40" y1="90" x2="38" y2="140" stroke="white" stroke-width="1" opacity="0.3" />
+          <line x1="60" y1="85" x2="60" y2="145" stroke="white" stroke-width="1" opacity="0.3" />
+          <line x1="80" y1="90" x2="82" y2="140" stroke="white" stroke-width="1" opacity="0.3" />
+        </svg>
+
+        <!-- Monas vector (right) -->
+        <svg class="banner-vector banner-vector-monas" viewBox="0 0 80 220" fill="white"
+          xmlns="http://www.w3.org/2000/svg">
+          <!-- Flame / gold top -->
+          <path d="M40 0 Q44 8 46 15 Q44 12 40 8 Q36 12 34 15 Q36 8 40 0Z" />
+          <ellipse cx="40" cy="16" rx="5" ry="4" />
+          <!-- Top spire -->
+          <rect x="38" y="18" width="4" height="20" rx="1" />
+          <!-- Upper platform -->
+          <path d="M30 38 L50 38 L48 42 L32 42 Z" />
+          <!-- Upper obelisk -->
+          <path d="M34 42 L46 42 L44 90 L36 90 Z" />
+          <!-- Middle viewing deck -->
+          <path d="M25 90 L55 90 L58 96 L22 96 Z" />
+          <rect x="28" y="96" width="24" height="6" />
+          <path d="M26 102 L54 102 L56 106 L24 106 Z" />
+          <!-- Railing dots -->
+          <circle cx="30" cy="94" r="1.5" />
+          <circle cx="36" cy="94" r="1.5" />
+          <circle cx="42" cy="94" r="1.5" />
+          <circle cx="48" cy="94" r="1.5" />
+          <!-- Lower tower shaft -->
+          <path d="M32 106 L48 106 L46 170 L34 170 Z" />
+          <!-- Lower decorative lines -->
+          <line x1="36" y1="110" x2="35" y2="168" stroke="white" stroke-width="0.5" opacity="0.3" />
+          <line x1="40" y1="106" x2="40" y2="170" stroke="white" stroke-width="0.5" opacity="0.3" />
+          <line x1="44" y1="110" x2="45" y2="168" stroke="white" stroke-width="0.5" opacity="0.3" />
+          <!-- Base platform layers -->
+          <path d="M22 170 L58 170 L62 178 L18 178 Z" />
+          <rect x="15" y="178" width="50" height="6" />
+          <path d="M10 184 L70 184 L74 192 L6 192 Z" />
+          <!-- Bottom base -->
+          <rect x="4" y="192" width="72" height="8" rx="2" />
+          <!-- Steps -->
+          <rect x="0" y="200" width="80" height="5" rx="1" />
+          <rect x="2" y="205" width="76" height="4" rx="1" />
+        </svg>
+
+        <div class="welcome-icon">
+          <svg width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+            </path>
+          </svg>
+        </div>
+        <h2>IT Software Solution for Business</h2>
+        <p>Lomba Kompetensi Siswa (LKS) SMK Tingkat Provinsi DKI Jakarta Tahun 2026 — Bidang IT Software Solution for Business
+        </p>
+      </div>
+      <div class="welcome-body">
+        <ul class="welcome-info-list">
+          <li>
+            <div class="info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <strong>Jadwal Pelaksanaan</strong>
+              <span>19 - 20 Mei 2026, SMKN 2 Jakarta</span>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                </path>
+              </svg>
+            </div>
+            <div>
+              <strong>Cakupan Kompetensi</strong>
+              <span>Analisis kebutuhan bisnis, perancangan sistem, pengembangan aplikasi, database, dan presentasi
+                solusi IT</span>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z">
+                </path>
+              </svg>
+            </div>
+            <div>
+              <strong>Peserta</strong>
+              <span>Siswa/i SMK terbaik perwakilan provinsi DKI Jakarta</span>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <strong>Tujuan</strong>
+              <span>Menghasilkan solusi teknologi informasi inovatif untuk memecahkan permasalahan bisnis nyata</span>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168 0.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332 0.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332 0.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <div>
+              <strong>Kisi-kisi Lomba</strong>
+              <span>Pelajari teknis lomba selengkapnya melalui: <a href="https://docs.google.com/document/d/1x-sajqx3_I4tIeHz-L5te3zeC5sbpvfk/edit?usp=sharing&ouid=114997341176747868853&rtpof=true&sd=true" target="_blank" style="color: var(--orange); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--orange);">Dokumen Teknis LKS</a></span>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon" style="background: #E8F5E9; color: #2E7D32;">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.31 0-4.187 1.875-4.187 4.187 0 .734.191 1.425.523 2.031l-.555 2.023 2.067-.543a4.15 4.15 0 0 0 2.152.598c2.313 0 4.191-1.879 4.191-4.187s-1.879-4.195-4.191-4.195zm2.445 5.922c-.102.285-.594.543-.812.578-.219.035-.492.055-.812-.055-.211-.07-.902-.332-1.723-1.059-.641-.57-1.074-1.27-1.2-1.488-.125-.219-.016-.336.094-.445.098-.102.219-.258.328-.387.109-.129.145-.219.219-.363.074-.148.035-.281-.016-.387-.051-.102-.457-1.102-.625-1.508-.164-.398-.332-.344-.457-.352-.117-.004-.254-.008-.391-.008-.137 0-.359.051-.547.258-.188.207-.715.703-.715 1.711s.73 1.988.832 2.129c.102.141 1.441 2.2 3.492 3.086.488.211.871.336 1.172.43.492.156.938.133 1.293.082.395-.059 1.215-.496 1.387-.977.172-.48.172-.895.121-.98-.051-.082-.188-.129-.395-.234zM12 2C6.477 2 2 6.477 2 12c0 1.891.527 3.656 1.445 5.168L2 22l4.965-1.301C8.4 21.52 10.133 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.66 0-3.211-.434-4.563-1.188l-.328-.184-3.047.797.813-2.969-.203-.324C3.891 14.809 3.333 13.445 3.333 12c0-4.781 3.886-8.667 8.667-8.667S20.667 7.219 20.667 12 16.781 20.667 12 20.667z"/></svg>
+            </div>
+            <div>
+              <strong>Grup Koordinasi (WA)</strong>
+              <span>Bergabung untuk informasi terkini: <a href="https://chat.whatsapp.com/J68rXaDy37l3JM2C9UZvmc?mode=gi_t" target="_blank" style="color: #2E7D32; font-weight: 700; text-decoration: none; border-bottom: 2px solid #2E7D32;">Join Grup WhatsApp</a></span>
+            </div>
+          </li>
+        </ul>
+        <div class="welcome-divider"></div>
+        <button class="btn-welcome" onclick="closeWelcome()">
+          Masuk ke Dashboard
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </button>
+        <p class="welcome-footer-note">LKS SMK 2026 — SMKN 2 Jakarta</p>
+      </div>
     </div>
-    <form id="addForm" onsubmit="submitForm(event)">
-      <div class="form-group">
-        <label>Nomor Induk Siswa</label>
-        <input type="text" id="nis" class="form-control" placeholder="Contoh: 24251001" required>
-      </div>
-      <div class="form-group">
-        <label>Nama Lengkap Siswa</label>
-        <input type="text" id="namaSiswa" class="form-control" placeholder="Masukkan nama" required>
-      </div>
-      <div class="form-group">
-        <label>Asal Sekolah</label>
-        <input type="text" id="namaSekolah" class="form-control" placeholder="SMKN 2 Jakarta" required>
-      </div>
-      <div class="form-group">
-        <label>Bidang Lomba</label>
-        <input type="text" id="bidangLomba" class="form-control" placeholder="Web Technologies" required>
-      </div>
-      <div class="form-group">
-        <label>Wilayah</label>
-        <input type="text" id="wilayah" class="form-control" placeholder="Jakarta Pusat" required>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-secondary" onclick="closeModal()">Batal</button>
-        <button type="submit" id="submitBtn" class="btn-primary">Simpan Data</button>
-      </div>
-    </form>
   </div>
-</div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (typeof google !== 'undefined' && google.script) {
-      fetchData();
-    } else {
-      // Mock Data for local viewing
+  <script>
+    // Show welcome modal on page load
+    document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        renderData([
-          {nis: "24251001", namaSiswa: "Ahmad Fauzi", namaSekolah: "SMKN 2 Jakarta", bidangLomba: "Web Technologies", wilayah: "Jakarta Pusat"},
-          {nis: "24251002", namaSiswa: "Siti Nurhaliza", namaSekolah: "SMKN 1 Jakarta", bidangLomba: "IT Software Solutions", wilayah: "Jakarta Pusat"},
-          {nis: "24251003", namaSiswa: "Budi Santoso", namaSekolah: "SMKN 26 Jakarta", bidangLomba: "Cyber Security", wilayah: "Jakarta Timur"}
-        ]);
-      }, 1500);
+        document.getElementById('welcomeModal').classList.add('active');
+      }, 400);
+
+      if (typeof google !== 'undefined' && google.script) {
+        fetchData();
+      } else {
+        // Mock Data for local viewing
+        setTimeout(() => {
+          renderData([
+            { nis: "24251001", namaSiswa: "Ahmad Fauzi", namaSekolah: "SMKN 2 Jakarta", bidangLomba: "IT Software Solution for Business", wilayah: "Jakarta Pusat" },
+            { nis: "24251002", namaSiswa: "Siti Nurhaliza", namaSekolah: "SMKN 1 Jakarta", bidangLomba: "IT Software Solution for Business", wilayah: "Jakarta Pusat" },
+            { nis: "24251003", namaSiswa: "Budi Santoso", namaSekolah: "SMKN 26 Jakarta", bidangLomba: "IT Software Solution for Business", wilayah: "Jakarta Timur" }
+          ]);
+        }, 1500);
+      }
+    });
+
+    function closeWelcome() {
+      document.getElementById('welcomeModal').classList.remove('active');
     }
-  });
 
-  function fetchData() {
-    document.getElementById('loader').style.display = 'flex';
-    document.getElementById('dataTable').style.display = 'none';
-    google.script.run
-      .withSuccessHandler(renderData)
-      .withFailureHandler(showError)
-      .getWinnersData();
-  }
+    function fetchData() {
+      document.getElementById('loader').style.display = 'flex';
+      document.getElementById('dataTable').style.display = 'none';
+      google.script.run
+        .withSuccessHandler(renderData)
+        .withFailureHandler(showError)
+        .getWinnersData();
+    }
 
-  function renderData(data) {
-    document.getElementById('loader').style.display = 'none';
-    const table = document.getElementById('dataTable');
-    const tbody = document.getElementById('tableBody');
-    
-    if (!data || data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 4rem; color: var(--text-muted); font-weight: 500;">Belum ada rekam data pemenang.</td></tr>';
-    } else {
-      let html = '';
-      data.forEach((row, idx) => {
-        const delay = idx * 0.05;
-        html += `<tr class="row-enter" style="animation-delay: ${delay}s">
+    function renderData(data) {
+      document.getElementById('loader').style.display = 'none';
+      const table = document.getElementById('dataTable');
+      const tbody = document.getElementById('tableBody');
+
+      if (!data || data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 4rem; color: var(--text-muted); font-weight: 500;">Belum ada rekam data pemenang.</td></tr>';
+      } else {
+        let html = '';
+        data.forEach((row, idx) => {
+          const delay = idx * 0.05;
+          html += `<tr class="row-enter" style="animation-delay: ${delay}s">
           <td class="td-nis">${esc(row.nis)}</td>
           <td class="td-siswa">${esc(row.namaSiswa)}</td>
           <td class="td-sekolah">${esc(row.namaSekolah)}</td>
@@ -540,77 +1138,122 @@
             </div>
           </td>
         </tr>`;
-      });
-      tbody.innerHTML = html;
+        });
+        tbody.innerHTML = html;
+      }
+      table.style.display = 'table';
+      updateStats(data);
     }
-    table.style.display = 'table';
-  }
 
-  function showError(err) {
-    document.getElementById('loader').innerHTML = `
+    function updateStats(data) {
+      if (!data) return;
+      const total = data.length;
+      const schools = new Set(data.map(item => item.namaSekolah)).size;
+      const regions = new Set(data.map(item => item.wilayah)).size;
+
+      animateValue('stat-total', 0, total, 1000);
+      animateValue('stat-schools', 0, schools, 1000);
+      animateValue('stat-regions', 0, regions, 1000);
+    }
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function filterTable() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const tbody = document.getElementById('tableBody');
+      const rows = tbody.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const text = rows[i].textContent.toLowerCase();
+        if (text.includes(filter)) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    }
+
+    function showError(err) {
+      document.getElementById('loader').innerHTML = `
       <div style="text-align:center; color: #ef4444;">
         <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:1rem"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         <p style="font-family:'Outfit', sans-serif; font-size:1.2rem; font-weight:700;">Gagal Memuat Data</p>
         <p style="opacity:0.8; font-size:0.9rem; font-weight:500;">${err.message}</p>
       </div>`;
-  }
+    }
 
-  function openModal() {
-    document.getElementById('addModal').classList.add('active');
-  }
+    function openModal() {
+      document.getElementById('addModal').classList.add('active');
+    }
 
-  function closeModal() {
-    document.getElementById('addModal').classList.remove('active');
-    document.getElementById('addForm').reset();
-  }
+    function closeModal() {
+      document.getElementById('addModal').classList.remove('active');
+      document.getElementById('addForm').reset();
+      // Ensure fixed value remains after reset
+      document.getElementById('bidangLomba').value = "IT Software Solution for Business";
+    }
 
-  function submitForm(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerHTML = 'Memproses...';
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Memproses...';
 
-    const payload = {
-      nis: document.getElementById('nis').value,
-      namaSiswa: document.getElementById('namaSiswa').value,
-      namaSekolah: document.getElementById('namaSekolah').value,
-      bidangLomba: document.getElementById('bidangLomba').value,
-      wilayah: document.getElementById('wilayah').value
-    };
+      const payload = {
+        nis: document.getElementById('nis').value,
+        namaSiswa: document.getElementById('namaSiswa').value,
+        namaSekolah: document.getElementById('namaSekolah').value,
+        bidangLomba: document.getElementById('bidangLomba').value,
+        wilayah: document.getElementById('wilayah').value
+      };
 
-    if (typeof google !== 'undefined' && google.script) {
-      google.script.run
-        .withSuccessHandler(() => {
+      if (typeof google !== 'undefined' && google.script) {
+        google.script.run
+          .withSuccessHandler(() => {
+            closeModal();
+            btn.disabled = false;
+            btn.innerHTML = 'Simpan Data';
+            fetchData(); // Reload table
+          })
+          .withFailureHandler((err) => {
+            btn.disabled = false;
+            btn.innerHTML = 'Simpan Data';
+            alert('Gagal menyimpan: ' + err.message);
+          })
+          .addWinner(payload);
+      } else {
+        setTimeout(() => {
           closeModal();
           btn.disabled = false;
           btn.innerHTML = 'Simpan Data';
-          fetchData(); // Reload table
-        })
-        .withFailureHandler((err) => {
-          btn.disabled = false;
-          btn.innerHTML = 'Simpan Data';
-          alert('Gagal menyimpan: ' + err.message);
-        })
-        .addWinner(payload);
-    } else {
-      setTimeout(() => {
-        closeModal();
-        btn.disabled = false;
-        btn.innerHTML = 'Simpan Data';
-        alert('Data tersimpan (Mock)');
-      }, 1000);
+          alert('Data tersimpan (Mock)');
+        }, 1000);
+      }
     }
-  }
 
-  function esc(str) {
-    if (!str) return '';
-    return str.toString()
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
-</script>
+    function esc(str) {
+      if (!str) return '';
+      return str.toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
 </body>
+
 </html>
