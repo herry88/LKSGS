@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+  <!-- Google Fonts: Outfit for premium geometric look, Inter for readable text -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #F9FAFB;
+      --bg-card: #FFFFFF;
+      --text-main: #111827;
+      --text-muted: #6B7280;
+      --orange: #F97316;
+      --orange-dark: #EA580C;
+      --black: #09090B;
+      --black-hover: #18181B;
+      --border: #E5E7EB;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Subtle geometric background pattern */
+      background-image: radial-gradient(var(--border) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 3rem 1.5rem;
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Header */
+    .header-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    
+    .header-content h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--black);
+    }
+
+    .header-content h1 span {
+      color: var(--orange);
+    }
+
+    .header-content p {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0 0;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Premium Button */
+    .btn-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--black);
+      color: #FFFFFF;
+      border: 2px solid var(--black);
+      padding: 0.875rem 1.75rem;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-action:hover {
+      background-color: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-action svg {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-action:hover svg {
+      transform: rotate(90deg);
+    }
+
+    /* Table Card */
+    .content-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--orange);
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 2px solid var(--border);
+      background: #F9FAFB;
+    }
+
+    td {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      vertical-align: middle;
+      transition: background-color 0.2s ease;
+    }
+
+    tr {
+      transition: all 0.2s ease;
+    }
+
+    tr:hover td {
+      background-color: #FFF7ED; /* Soft orange background on hover */
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Typography & Accents in Table */
+    .td-nis {
+      font-family: 'Outfit', monospace;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .td-siswa {
+      font-weight: 700;
+      color: var(--black);
+      font-size: 1.05rem;
+    }
+
+    .td-sekolah {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.025em;
+      background: var(--black);
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .wilayah {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--orange-dark);
+    }
+
+    .wilayah-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(17, 24, 39, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 500px;
+      padding: 2.5rem;
+      transform: translateY(20px) scale(0.98);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .close-btn {
+      background: #F3F4F6;
+      border: none;
+      color: var(--text-muted);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .close-btn:hover {
+      background: var(--black);
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      background: #F9FAFB;
+      border: 2px solid var(--border);
+      color: var(--black);
+      padding: 0.875rem 1.25rem;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    }
+
+    .modal-footer {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 2px solid var(--border);
+      color: var(--text-main);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #F3F4F6;
+      border-color: #D1D5DB;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      border: 2px solid var(--orange);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      border-color: var(--orange-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px -1px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Loading Spinner */
+    .loader-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #FFF7ED;
+      border-radius: 50%;
+      border-top-color: var(--orange);
+      animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+      margin-bottom: 1.5rem;
+    }
+
+    .loader-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    
+    .row-enter {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .header-content h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-wrapper">
+    <div class="header-content">
+      <p>Rekapitulasi Tahun 2026</p>
+      <h1>Pemenang <span>LKS</span></h1>
+    </div>
+    <button class="btn-action" onclick="openModal()">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+      Tambah Data
+    </button>
+  </div>
+
+  <div class="content-card">
+    <div class="table-container">
+      <div id="loader" class="loader-wrapper">
+        <div class="spinner"></div>
+        <div class="loader-text">Sinkronisasi Data...</div>
+      </div>
+
+      <table id="dataTable" style="display: none;">
+        <thead>
+          <tr>
+            <th>NIS</th>
+            <th>Nama Siswa</th>
+            <th>Asal Sekolah</th>
+            <th>Bidang Lomba</th>
+            <th>Wilayah</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Data Rows -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>Entri Data Baru</h2>
+      <button class="close-btn" onclick="closeModal()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <form id="addForm" onsubmit="submitForm(event)">
+      <div class="form-group">
+        <label>Nomor Induk Siswa</label>
+        <input type="text" id="nis" class="form-control" placeholder="Contoh: 24251001" required>
+      </div>
+      <div class="form-group">
+        <label>Nama Lengkap Siswa</label>
+        <input type="text" id="namaSiswa" class="form-control" placeholder="Masukkan nama" required>
+      </div>
+      <div class="form-group">
+        <label>Asal Sekolah</label>
+        <input type="text" id="namaSekolah" class="form-control" placeholder="SMKN 2 Jakarta" required>
+      </div>
+      <div class="form-group">
+        <label>Bidang Lomba</label>
+        <input type="text" id="bidangLomba" class="form-control" placeholder="Web Technologies" required>
+      </div>
+      <div class="form-group">
+        <label>Wilayah</label>
+        <input type="text" id="wilayah" class="form-control" placeholder="Jakarta Pusat" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeModal()">Batal</button>
+        <button type="submit" id="submitBtn" class="btn-primary">Simpan Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof google !== 'undefined' && google.script) {
+      fetchData();
+    } else {
+      // Mock Data for local viewing
+      setTimeout(() => {
+        renderData([
+          {nis: "24251001", namaSiswa: "Ahmad Fauzi", namaSekolah: "SMKN 2 Jakarta", bidangLomba: "Web Technologies", wilayah: "Jakarta Pusat"},
+          {nis: "24251002", namaSiswa: "Siti Nurhaliza", namaSekolah: "SMKN 1 Jakarta", bidangLomba: "IT Software Solutions", wilayah: "Jakarta Pusat"},
+          {nis: "24251003", namaSiswa: "Budi Santoso", namaSekolah: "SMKN 26 Jakarta", bidangLomba: "Cyber Security", wilayah: "Jakarta Timur"}
+        ]);
+      }, 1500);
+    }
+  });
+
+  function fetchData() {
+    document.getElementById('loader').style.display = 'flex';
+    document.getElementById('dataTable').style.display = 'none';
+    google.script.run
+      .withSuccessHandler(renderData)
+      .withFailureHandler(showError)
+      .getWinnersData();
+  }
+
+  function renderData(data) {
+    document.getElementById('loader').style.display = 'none';
+    const table = document.getElementById('dataTable');
+    const tbody = document.getElementById('tableBody');
+    
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 4rem; color: var(--text-muted); font-weight: 500;">Belum ada rekam data pemenang.</td></tr>';
+    } else {
+      let html = '';
+      data.forEach((row, idx) => {
+        const delay = idx * 0.05;
+        html += `<tr class="row-enter" style="animation-delay: ${delay}s">
+          <td class="td-nis">${esc(row.nis)}</td>
+          <td class="td-siswa">${esc(row.namaSiswa)}</td>
+          <td class="td-sekolah">${esc(row.namaSekolah)}</td>
+          <td><div class="badge">${esc(row.bidangLomba)}</div></td>
+          <td>
+            <div class="wilayah">
+              <div class="wilayah-dot"></div>
+              <span>${esc(row.wilayah)}</span>
+            </div>
+          </td>
+        </tr>`;
+      });
+      tbody.innerHTML = html;
+    }
+    table.style.display = 'table';
+  }
+
+  function showError(err) {
+    document.getElementById('loader').innerHTML = `
+      <div style="text-align:center; color: #ef4444;">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-bottom:1rem"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        <p style="font-family:'Outfit', sans-serif; font-size:1.2rem; font-weight:700;">Gagal Memuat Data</p>
+        <p style="opacity:0.8; font-size:0.9rem; font-weight:500;">${err.message}</p>
+      </div>`;
+  }
+
+  function openModal() {
+    document.getElementById('addModal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('addModal').classList.remove('active');
+    document.getElementById('addForm').reset();
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = 'Memproses...';
+
+    const payload = {
+      nis: document.getElementById('nis').value,
+      namaSiswa: document.getElementById('namaSiswa').value,
+      namaSekolah: document.getElementById('namaSekolah').value,
+      bidangLomba: document.getElementById('bidangLomba').value,
+      wilayah: document.getElementById('wilayah').value
+    };
+
+    if (typeof google !== 'undefined' && google.script) {
+      google.script.run
+        .withSuccessHandler(() => {
+          closeModal();
+          btn.disabled = false;
+          btn.innerHTML = 'Simpan Data';
+          fetchData(); // Reload table
+        })
+        .withFailureHandler((err) => {
+          btn.disabled = false;
+          btn.innerHTML = 'Simpan Data';
+          alert('Gagal menyimpan: ' + err.message);
+        })
+        .addWinner(payload);
+    } else {
+      setTimeout(() => {
+        closeModal();
+        btn.disabled = false;
+        btn.innerHTML = 'Simpan Data';
+        alert('Data tersimpan (Mock)');
+      }, 1000);
+    }
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    return str.toString()
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+</body>
+</html>
